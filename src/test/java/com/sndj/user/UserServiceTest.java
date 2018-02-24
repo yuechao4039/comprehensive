@@ -37,8 +37,8 @@ public class UserServiceTest {
 
     @Test
     public void testQueryAll() {
-        List<User> userInfos = userService.getUsers();
-        LOGGER.info(JSON.toJSON(userInfos));
+//        List<User> userInfos = userService.getUsers();
+//        LOGGER.info(JSON.toJSON(userInfos));
     }
 
     @Test

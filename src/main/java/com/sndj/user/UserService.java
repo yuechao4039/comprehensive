@@ -1,5 +1,6 @@
 package com.sndj.user;
 
+import com.sndj.ingredient.RowsRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +18,17 @@ public class UserService {
         return userDao.selectByPrimaryKey(id);
     }
 
-    public List<User> getUsers() {
-        return userDao.selectAll();
+    public RowsRep<UserInfo> getUsers() {
+        RowsRep<UserInfo> rowsRep = new RowsRep<UserInfo>();
+        List<User> list = userDao.selectAll();
+        for (User user : list) {
+            UserInfo info = new UserInfo();
+            info.setId(user.getId());
+            info.setAge(user.getAge());
+            info.setUsername(user.getUsername());
+            rowsRep.add(info);
+        }
+        return rowsRep;
     }
 
     @Transactional
